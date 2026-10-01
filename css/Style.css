@@ -1,118 +1,224 @@
 @import url('https://fonts.googleapis.com/css2?family=Ole&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-html{
-    scroll-behavior: smooth;
-    scroll-padding-top:80px ;
+/* ==========================================================================
+   VARIABLES CSS (CUSTOM PROPERTIES)
+   ========================================================================== */
+:root {
+    /* Colores */
+    --bg-primary: #b2ebf2;
+    --nav-bg: color-mix(in oklab, #ff562260 90%, transparent);
+    --nav-hover: #dd2c00;
+    --text-color: #ffffff;
+    --footer-bg: #00bcd4;
+    --btn-bg: #ff562260;
+    --border-color: #ccc;
+    --input-bg: #ffffff;
+
+    /* Fuentes */
+    --font-primary: "Open Sans", sans-serif;
+    --font-heading: "Ole", cursive;
+
+    /* Dimensiones y Tiempos */
+    --nav-height: 80px;
+    --transition-speed: 0.3s;
+    --border-radius: 10px;
 }
 
-*{
+/* ==========================================================================
+   RESET Y ESTILOS GENERALES
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
+}
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
-    background-color: #b2ebf2;
-
-
-}
-h2{
-    font-family: "Ole", cursive;
+    font-family: var(--font-primary);
+    background-color: var(--bg-primary);
 }
 
+h2 {
+    font-family: var(--font-heading);
+}
+
+/* ==========================================================================
+   NAVEGACIÓN
+   ========================================================================== */
 nav {
     width: 100%;
-    background-color: color-mix(in oklab,  #ff562260 90%, transparent);
+    background-color: var(--nav-bg);
     backdrop-filter: blur(12px);
-    color: white;
+    color: var(--text-color);
     position: fixed;
-
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
+
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-
+    align-items: center;
 }
 
-nav ul li{
-    transition: all 1S;
+nav ul li {
+    transition: background-color var(--transition-speed) ease;
 }
 
 nav ul li a {
-    display: block;
-    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
     padding: 20px 20px;
     text-decoration: none;
-
-}
-nav ul li:hover{
-    background-color: #dd2c00;
-
 }
 
-section{
+nav ul li:hover {
+    background-color: var(--nav-hover);
+}
+
+.icono {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DE CONTENIDO
+   ========================================================================== */
+.hero {
+    width: 100%;
+    height: 300px;
+    background-image: url(../assets/img/pexels-dkomov-34803999\ \(1\).jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+section {
     padding-top: 70px;
-    width: 95%;
+    width: 90%;
+    max-width: 1200px;
     margin: auto;
     text-align: justify;
-
 }
+
 p {
     margin: 16px 0;
     line-height: 150%;
 }
 
-footer {
+/* ==========================================================================
+   FORMULARIO DE CONTACTO
+   ========================================================================== */
+.formulario {
     width: 100%;
-    height: 50px;
-    background-color: #00bcd4;
-    color: white;
-    text-align: center;
-    line-height: 50px;
+    padding: 15px;
+    margin: 50px auto;
 }
 
-.hero{
-    width: 100%;
-    height: 300px;
-    background-image: url(../assets/img/pexels-dkomov-34803999\ \(1\).jpg);
-}
-.icono{
-    position: relative;
-    top: 5px;
-}
-.formulario{
-    width: 100%;
-    padding:15px ;
-    margin: 50px auto;
-    
-}
-form{
+form {
     width: 50%;
     margin: 10px auto;
     text-align: left;
-    
 }
+
 input, textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
 }
-.enviar{
-    background-color:#ff562260;
+
+.enviar {
+    background-color: var(--btn-bg);
     width: 100%;
     font-size: 26px;
     padding: 12px 20px;
     margin: 8px 0px;
     border: none;
-    border-radius: 10px;
-    transition: all 1S;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed) ease;
+    cursor: pointer;
 }
-.enviar:hover{
-    background-color: #dd2c00;
-    
+
+.enviar:hover {
+    background-color: var(--nav-hover);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    width: 100%;
+    height: 50px;
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+    text-align: center;
+    line-height: 50px;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE DESIGN)
+   ========================================================================== */
+
+/* Tablet (768px o menos) */
+@media (max-width: 768px) {
+    .hero {
+        height: 220px;
+    }
+
+    nav ul li a {
+        padding: 15px 12px;
+        font-size: 14px;
+    }
+
+    form {
+        width: 70%;
+    }
+}
+
+/* Celulares (480px o menos) */
+@media (max-width: 480px) {
+    /* Ocultar el texto del menú y mostrar solo los íconos */
+    nav ul li a span {
+        display: none;
+    }
+
+    nav ul li a {
+        padding: 15px 10px;
+        justify-content: center;
+    }
+
+    .icono {
+        top: 0;
+        width: 24px;
+        height: 24px;
+    }
+
+    .hero {
+        height: 160px;
+    }
+
+    section {
+        width: 95%;
+        padding-top: 40px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .enviar {
+        font-size: 20px;
+    }
 }
